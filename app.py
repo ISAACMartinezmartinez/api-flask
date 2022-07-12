@@ -8,29 +8,29 @@ CORS(app)
 @cross_origin
 @app.route('/',methods=['GET'])
 def home():
-    file = open("./spam-ham.txt","r")
+    file = open("./entrenamiento.txt","r")
     spam= file.read(3)
     ham= file.read(3)
-    return jsonify(cantidad=[{"Spam": str(spam),"Ham":str(ham)}])
+    return jsonify(correos=[{"spam": str(spam),"ham":str(ham)}])
 
 @cross_origin
-@app.route('/image',methods=['GET'])
+@app.route('/imagen',methods=['GET'])
 def image():
     return send_file('./Correos.jpg',attachment_filename='Correos.jpg')
 
 @cross_origin
-@app.route('/prediction',methods=['GET'])
+@app.route('/prediccion',methods=['GET'])
 def prediction():
-    file= open('./prediction.txt',"r")
+    file= open('./prediccion.txt',"r")
     prediction = file.read()
-    return jsonify(pre=[{"Prediction": str(prediction)}])
+    return jsonify(prediccion=[{"Prediccion": str(prediction)}])
 
 @cross_origin
-@app.route('/accuracy',methods=['GET'])
+@app.route('/porcentaje',methods=['GET'])
 def accuracy():
     file= open('./accuracy.txt',"r")
     accuracy = file.read()
-    return jsonify(accu=[{"Accuracy": str(accuracy)}])
+    return jsonify(porcentaje=[{"porcentaje": str(accuracy)}])
 
 if __name__ == '__main__':
     app.run(port=5000)
